@@ -39,7 +39,10 @@ import { FilePath } from '@ionic-native/file-path';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp, {tabsPlacement: 'top'}),
+    IonicModule.forRoot(MyApp, {scrollPadding: false,
+            scrollAssist: true,
+            autoFocusAssist: false,
+            tabsPlacement: 'top'}),
     AngularFireModule.initializeApp(config)
   ],
   bootstrap: [IonicApp],

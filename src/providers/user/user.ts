@@ -53,7 +53,7 @@ export class UserProvider {
               displayName: this.af2auth.auth.currentUser.displayName,
               photoURL: imageurl      
           }).then(() => {
-              firebase.database().ref('/users/' + firebase.auth().currentUser.uid).update({
+              firebase.database().ref('/chatusers/' + firebase.auth().currentUser.uid).update({
               displayName: this.af2auth.auth.currentUser.displayName,
               photoURL: imageurl,
               uid: firebase.auth().currentUser.uid
@@ -67,5 +67,43 @@ export class UserProvider {
              })  
       })
       return promise;
+  }
+
+  getUserDetails(){
+    var promise = new Promise((resolve,reject)=>{
+      this.firedata.child(firebase.auth().currentUser.uid).once('value',(snapshot)=>{
+        resolve(snapshot.val());
+      }).catch((err)=>{
+        reject(err);
+      })
+    })
+
+    return promise;
+  }
+
+updatedisplayname(newname) {
+    var promise = new Promise((resolve, reject) => {
+      this.af2auth.auth.currentUser.updateProfile({
+      displayName: newname,
+      photoURL: this.af2auth.auth.currentUser.photoURL
+    }).then(() => {
+      this.firedata.child(firebase.auth().currentUser.uid).update({
+        displayName: newname,
+        photoURL: this.af2auth.auth.currentUser.photoURL,
+        uid: this.af2auth.auth.currentUser.uid
+      }).then(() => {
+        resolve({ success: true });
+      }).catch((err) => {
+        reject(err);
+      })
+      }).catch((err) => {
+        reject(err);
+    })
+    })
+    return promise;
+  }
+  
+  getAllUsers(){
+    
   }
 }

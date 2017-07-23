@@ -14,15 +14,18 @@ import firebase from 'firebase';
 export class ImghandlerProvider {
   nativepath: any;
   firestore = firebase.storage();
-  constructor(public filechooser: FileChooser) {
+  constructor(public FilePath:FilePath,public filechooser: FileChooser) {
   }
   
   uploadimage() {
     var promise = new Promise((resolve, reject) => {
         this.filechooser.open().then((url) => {
-          (<any>window).FilePath.resolveNativePath(url, (result) => {
+          console.log("file choose open:" + url);
+          this.FilePath.resolveNativePath(url).then((result) => {
+            console.log("native path resolved:"+ result);
             this.nativepath = result;
             (<any>window).resolveLocalFileSystemURL(this.nativepath, (res) => {
+              console.log("local path resolved:");
               res.file((resFile) => {
                 var reader = new FileReader();
                 reader.readAsArrayBuffer(resFile);
@@ -31,6 +34,7 @@ export class ImghandlerProvider {
                   var imageStore = this.firestore.ref('/profileimages').child(firebase.auth().currentUser.uid);
                   imageStore.put(imgBlob).then((res) => {
                     this.firestore.ref('/profileimages').child(firebase.auth().currentUser.uid).getDownloadURL().then((url) => {
+                      console.log("download url:"+ url);
                       resolve(url);
                     }).catch((err) => {
                         reject(err);

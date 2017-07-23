@@ -1,27 +1,26 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import {BuddiesPage} from '../buddies/buddies';
+
 /**
- * Generated class for the ChatsPage page.
+ * Generated class for the BuddiesPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 
 @Component({
-  selector: 'page-chats',
-  templateUrl: 'chats.html',
+  selector: 'page-buddies',
+  templateUrl: 'buddies.html',
 })
-export class ChatsPage {
+export class BuddiesPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ChatsPage');
+    console.log('ionViewDidLoad BuddiesPage');
   }
 
-  addbuddy(){
-    this.navCtrl.push(BuddiesPage);
-  }
+  
+
 }
