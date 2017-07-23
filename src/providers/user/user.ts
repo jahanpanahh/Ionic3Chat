@@ -104,6 +104,20 @@ updatedisplayname(newname) {
   }
   
   getAllUsers(){
-    
+    var promise = new Promise((resolve,reject)=>{
+      this.firedata.orderByChild('uid').once('value',(snapshot)=>{
+        let userData = snapshot.val();
+        let temprr = [];
+        for(var key in userData)
+          {
+            temprr.push(userData[key]);
+          }
+          resolve(temprr);
+      }).catch((err)=>{
+        reject(err);
+      })
+    })
+
+    return promise;
   }
 }

@@ -14,6 +14,7 @@ import {ProfilePage} from '../pages/profile/profile';
 import {SignupPage} from '../pages/signup/signup';
 import {ProfilepicPage} from '../pages/profilepic/profilepic';
 import {PasswordresetPage} from '../pages/passwordreset/passwordreset';
+import {BuddiesPage} from '../pages/buddies/buddies';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { AuthProvider } from '../providers/auth/auth';
@@ -35,7 +36,8 @@ import { FilePath } from '@ionic-native/file-path';
     ProfilePage,
     ProfilepicPage,
     SignupPage,
-    PasswordresetPage
+    PasswordresetPage,
+    BuddiesPage
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ import { FilePath } from '@ionic-native/file-path';
     ProfilePage,
     ProfilepicPage,
     SignupPage,
-    PasswordresetPage
+    PasswordresetPage,
+    BuddiesPage
   ],
   providers: [
     StatusBar,
